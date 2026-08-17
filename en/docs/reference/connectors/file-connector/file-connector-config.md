@@ -2889,9 +2889,31 @@ The following operations allow you to work with the File Connector version 4. Cl
                 No
             </td>
         </tr>
+        <tr>
+            <td>
+                Include File Names
+            </td>
+            <td>
+                includeFileNames
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                 If set to true, the names of the extracted files are returned in the response under <code>zipFileContent</code>. Available from File Connector <b>v4.0.45</b> and above.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
 
     > NOTE: The latest File connector (v4.0.7 onwards) supports decompressing the .gz files.
+
+    > NOTE: `includeFileNames` defaults to `false`, so the response does not include the extracted file names unless it is explicitly set to `true`.
     
      **Sample configuration**
     ```xml
@@ -2913,19 +2935,25 @@ The following operations allow you to work with the File Connector version 4. Cl
 
     **Response** 
 
+    By default (when `includeFileNames` is not set or is `false`):
+
     ```xml
     <unzipFileResult>
-       <success>true</success>
-       <zipFileContent>
-           <test1.txt>extracted</test1.txt>
-           <test2.txt>extracted</test2.txt>
-           <hasitha--a1.txt>extracted</hasitha--a1.txt>
-           <hasitha--a2.txt>extracted</hasitha--a2.txt>
-           <hasitha--b--b2.txt>extracted</hasitha--b--b2.txt>
-           <hasitha--b--b1.txt>extracted</hasitha--b--b1.txt>
-           <hasitha--b--c--test1.txt>extracted</hasitha--b--c--test1.txt>
-           <hasitha--b--c--c1.txt>extracted</hasitha--b--c--c1.txt>
-       </zipFileContent>
+        <success>true</success>
+    </unzipFileResult>
+    ```
+
+    When `includeFileNames` is set to `true`:
+
+    ```xml
+    <unzipFileResult>
+        <success>true</success>
+        <zipFileContent>
+            <file>test1.txt</file>
+            <file>test2.txt</file>
+            <file>docs/a1.txt</file>
+            <file>docs/archive/c1.txt</file>
+        </zipFileContent>
     </unzipFileResult>
     ```
 
@@ -3492,8 +3520,28 @@ The following operations allow you to work with the File Connector version 4. Cl
                 Yes
             </td>
         </tr>
+        <tr>
+            <td>
+                File Name Encoding
+            </td>
+            <td>
+                fileNameEncoding
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The character encoding to interpret the file names inside the ZIP archive. Available from File Connector <b>v4.0.45</b> and above.
+            </td>
+            <td>
+                UTF-8
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
-    
+
     **Sample configuration**
     ```xml
     <file.exploreZipFile configKey="CONNECTION_NAME">
@@ -3514,17 +3562,13 @@ The following operations allow you to work with the File Connector version 4. Cl
 
     ```xml
     <exploreZipFileResult>
-       <success>true</success>
-       <zipFileContent>
-           <file>test1.txt</file>
-           <file>test2.txt</file>
-           <file>hasitha/a1.txt</file>
-           <file>hasitha/a2.txt</file>
-           <file>hasitha/b/b2.txt</file>
-           <file>hasitha/b/b1.txt</file>
-           <file>hasitha/b/c/test1.txt</file>
-           <file>hasitha/b/c/c1.txt</file>
-       </zipFileContent>
+        <success>true</success>
+        <zipFileContent>
+            <file>test1.txt</file>
+            <file>test2.txt</file>
+            <file>docs/a1.txt</file>
+            <file>docs/archive/c1.txt</file>
+        </zipFileContent>
     </exploreZipFileResult>
     ```
 
