@@ -2913,7 +2913,6 @@ The following operations allow you to work with the File Connector version 4. Cl
 
     > NOTE: The latest File connector (v4.0.7 onwards) supports decompressing the .gz files.
 
-    > NOTE: `includeFileNames` defaults to `false`, so the response does not include the extracted file names unless it is explicitly set to `true`.
     
      **Sample configuration**
     ```xml
