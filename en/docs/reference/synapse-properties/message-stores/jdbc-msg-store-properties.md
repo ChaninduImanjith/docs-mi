@@ -117,8 +117,7 @@ The syntax of the JDBC message store can be different depending on whether you c
 The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a datasource. Given below are the external datasource properties:
 
 !!! Tip
-    Network-related parameters, such as connection and socket timeouts, may need to be fine-tuned based on your environment. For more information, see [Tuning JDBC Pool Configurations]({{base_path}}/install-and-setup/setup/performance-tuning/jdbc-tuning/).
-
+    Network-related parameters, such as connection and socket timeouts, may need to be fine-tuned based on your environment. For more information, see [Tuning JDBC Pool Configurations]({{base_path}}/install-and-setup/setup/performance-tuning/jdbc-tuning).
 <table>
   <tr>
     <th>Property</th>
